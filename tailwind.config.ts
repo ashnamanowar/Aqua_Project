@@ -57,6 +57,13 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
+        // Ocean theme colors
+        ocean: {
+          DEFAULT: "hsl(var(--ocean-blue))",
+          light: "hsl(var(--ocean-light))", 
+          dark: "hsl(var(--ocean-dark))",
+          surface: "hsl(var(--surface-blue))",
+        },
       },
       borderRadius: {
         lg: "var(--radius)",
