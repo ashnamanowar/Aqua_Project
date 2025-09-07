@@ -57,12 +57,22 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
-        // Ocean theme colors
+        // Dark Ocean theme colors for presentations
         ocean: {
-          DEFAULT: "hsl(var(--ocean-blue))",
-          light: "hsl(var(--ocean-light))", 
-          dark: "hsl(var(--ocean-dark))",
-          surface: "hsl(var(--surface-blue))",
+          bg: "hsl(var(--ocean-bg))",
+          card: "hsl(var(--ocean-card))",
+          surface: "hsl(var(--ocean-surface))",
+          border: "hsl(var(--ocean-border))",
+          accent: "hsl(var(--ocean-accent))",
+          cyan: "hsl(var(--ocean-cyan))",
+          teal: "hsl(var(--ocean-teal))",
+          blue: "hsl(var(--ocean-blue))",
+          deep: "hsl(var(--ocean-deep))",
+          text: {
+            primary: "hsl(var(--ocean-text-primary))",
+            secondary: "hsl(var(--ocean-text-secondary))", 
+            muted: "hsl(var(--ocean-text-muted))",
+          }
         },
       },
       borderRadius: {

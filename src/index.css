@@ -8,43 +8,48 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* Ocean-themed design system */
-    --background: 197 100% 98%;
-    --foreground: 215 28% 17%;
+    /* Modern Dark Ocean Theme for Presentations */
+    --background: 217 33% 7%;
+    --foreground: 0 0% 95%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 215 28% 17%;
+    --card: 217 33% 10%;
+    --card-foreground: 0 0% 95%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 215 28% 17%;
+    --popover: 217 33% 10%;
+    --popover-foreground: 0 0% 95%;
 
-    --primary: 199 89% 48%;
-    --primary-foreground: 0 0% 100%;
+    --primary: 180 100% 50%;
+    --primary-foreground: 217 33% 7%;
 
-    --secondary: 197 19% 95%;
-    --secondary-foreground: 215 28% 17%;
+    --secondary: 217 33% 15%;
+    --secondary-foreground: 0 0% 95%;
 
-    --muted: 197 19% 95%;
-    --muted-foreground: 215 13% 46%;
+    --muted: 217 33% 15%;
+    --muted-foreground: 0 0% 65%;
 
-    --accent: 199 89% 48%;
-    --accent-foreground: 0 0% 100%;
+    --accent: 180 100% 50%;
+    --accent-foreground: 217 33% 7%;
 
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: 0 0% 98%;
 
-    --border: 214 32% 91%;
-    --input: 214 32% 91%;
-    --ring: 199 89% 48%;
+    --border: 217 33% 18%;
+    --input: 217 33% 15%;
+    --ring: 180 100% 50%;
 
-    /* Ocean gradients and special colors */
-    --ocean-gradient: linear-gradient(to bottom, hsl(197 100% 96%), hsl(0 0% 100%));
-    --ocean-blue: 199 89% 48%;
-    --ocean-light: 197 100% 96%;
-    --ocean-dark: 200 98% 39%;
-    --wave-blue: 199 89% 48%;
-    --deep-ocean: 215 28% 17%;
-    --surface-blue: 197 71% 90%;
+    /* Dark Ocean Theme Colors */
+    --ocean-bg: 217 33% 7%;
+    --ocean-card: 217 33% 10%;
+    --ocean-surface: 217 33% 15%;
+    --ocean-border: 217 33% 18%;
+    --ocean-accent: 180 100% 50%;
+    --ocean-cyan: 187 100% 60%;
+    --ocean-teal: 174 72% 56%;
+    --ocean-blue: 199 89% 58%;
+    --ocean-deep: 217 33% 12%;
+    --ocean-text-primary: 0 0% 95%;
+    --ocean-text-secondary: 0 0% 65%;
+    --ocean-text-muted: 0 0% 45%;
     
     --radius: 1rem;
 
