@@ -167,9 +167,9 @@ SELECT * FROM filtered LIMIT 200;`}
         </section>
 
         {/* Right Column: Map + Analytics */}
-        {hasSubmitted && (
-          <section className="lg:col-span-8 space-y-5">
-            {/* Map */}
+        <section className="lg:col-span-8 space-y-5">
+          {/* Map */}
+          {hasSubmitted && (
             <div className="relative h-72 rounded-2xl border border-ocean-border bg-ocean-card shadow-lg overflow-hidden">
               <div className="px-4 py-3 border-b border-ocean-border bg-ocean-surface text-sm font-semibold flex items-center justify-between text-ocean-text-primary">
                 <span>Interactive Map (mock)</span>
@@ -204,8 +204,10 @@ SELECT * FROM filtered LIMIT 200;`}
                 ))}
               </div>
             </div>
+          )}
 
-            {/* KPI Cards */}
+          {/* KPI Cards */}
+          {hasSubmitted && (
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               {[
                 { label: "Profiles", value: 52 },
@@ -224,131 +226,133 @@ SELECT * FROM filtered LIMIT 200;`}
                 </div>
               ))}
             </div>
+          )}
 
-            {/* Charts */}
-            <div className="grid grid-cols-1 xl:grid-cols-2 gap-5">
-              <div className="rounded-2xl bg-ocean-card border border-ocean-border shadow-lg p-5">
-                <div className="text-sm font-semibold mb-4 text-ocean-text-primary">
-                  Salinity vs Depth (Representative Profile)
-                </div>
-                <div className="h-72">
-                  <ResponsiveContainer width="100%" height="100%">
-                    <LineChart
-                      data={depthSeries}
-                      margin={{ top: 10, right: 20, bottom: 10, left: 0 }}
-                    >
-                      <CartesianGrid strokeDasharray="3 3" stroke="rgba(0,0,0,0.1)" />
-                      <XAxis
-                        dataKey="salinity"
-                        type="number"
-                        domain={[34, 36]}
-                        tickFormatter={(v) => v.toFixed(1)}
-                        tick={{ fill: 'hsl(var(--ocean-text-secondary))' }}
-                        axisLine={{ stroke: 'hsl(var(--ocean-border))' }}
-                        label={{
-                          value: "Salinity (PSU)",
-                          position: "insideBottom",
-                          offset: -2,
-                          style: { textAnchor: 'middle', fill: 'hsl(var(--ocean-text-primary))' }
-                        }}
-                      />
-                      <YAxis
-                        dataKey="depth"
-                        type="number"
-                        reversed
-                        domain={[0, 2000]}
-                        tick={{ fill: 'hsl(var(--ocean-text-secondary))' }}
-                        axisLine={{ stroke: 'hsl(var(--ocean-border))' }}
-                        label={{
-                          value: "Depth (m)",
-                          angle: -90,
-                          position: "insideLeft",
-                          style: { textAnchor: 'middle', fill: 'hsl(var(--ocean-text-primary))' }
-                        }}
-                      />
-                      <Tooltip
-                        contentStyle={{
-                          backgroundColor: 'hsl(var(--ocean-card))',
-                          border: '1px solid hsl(var(--ocean-border))',
-                          borderRadius: '12px',
-                          color: 'hsl(var(--ocean-text-primary))',
-                          boxShadow: '0 4px 12px rgba(0,0,0,0.15)'
-                        }}
-                        formatter={(v, n) => [
-                          v,
-                          n === "salinity" ? "Salinity" : "Depth",
-                        ]}
-                      />
-                      <Legend 
-                        wrapperStyle={{ color: 'hsl(var(--ocean-text-primary))' }}
-                      />
-                      <Line
-                        type="monotone"
-                        dataKey="salinity"
-                        dot={{ fill: 'hsl(var(--ocean-accent))', strokeWidth: 2, r: 4 }}
-                        strokeWidth={3}
-                        name="Salinity"
-                        stroke="hsl(var(--ocean-accent))"
-                      />
-                    </LineChart>
-                  </ResponsiveContainer>
-                </div>
-                <p className="text-xs text-ocean-text-muted mt-3 leading-relaxed">
-                  Surface water ~34.2 PSU, deep ocean ~35.2 PSU (Indian Ocean,
-                  March 2023).
-                </p>
+          {/* Charts */}
+          <div className="grid grid-cols-1 xl:grid-cols-2 gap-5">
+            <div className="rounded-2xl bg-ocean-card border border-ocean-border shadow-lg p-5">
+              <div className="text-sm font-semibold mb-4 text-ocean-text-primary">
+                Salinity vs Depth (Representative Profile)
               </div>
-
-              <div className="rounded-2xl bg-ocean-card border border-ocean-border shadow-lg p-5">
-                <div className="text-sm font-semibold mb-4 text-ocean-text-primary">
-                  Profiles Found in March 2023
-                </div>
-                <div className="h-72">
-                  <ResponsiveContainer width="100%" height="100%">
-                    <AreaChart
-                      data={timeline}
-                      margin={{ top: 10, right: 20, bottom: 0, left: 0 }}
-                    >
-                      <defs>
-                        <linearGradient id="g1" x1="0" y1="0" x2="0" y2="1">
-                          <stop offset="5%" stopColor="hsl(var(--ocean-accent))" stopOpacity={0.8} />
-                          <stop offset="95%" stopColor="hsl(var(--ocean-cyan))" stopOpacity={0.1} />
-                        </linearGradient>
-                      </defs>
-                      <CartesianGrid strokeDasharray="3 3" stroke="rgba(0,0,0,0.1)" />
-                      <XAxis 
-                        dataKey="day" 
-                        tick={{ fill: 'hsl(var(--ocean-text-secondary))' }}
-                        axisLine={{ stroke: 'hsl(var(--ocean-border))' }}
-                      />
-                      <YAxis 
-                        tick={{ fill: 'hsl(var(--ocean-text-secondary))' }}
-                        axisLine={{ stroke: 'hsl(var(--ocean-border))' }}
-                      />
-                      <Tooltip
-                        contentStyle={{
-                          backgroundColor: 'hsl(var(--ocean-card))',
-                          border: '1px solid hsl(var(--ocean-border))',
-                          borderRadius: '12px',
-                          color: 'hsl(var(--ocean-text-primary))',
-                          boxShadow: '0 4px 12px rgba(0,0,0,0.15)'
-                        }}
-                      />
-                      <Area
-                        type="monotone"
-                        dataKey="profiles"
-                        stroke="hsl(var(--ocean-accent))"
-                        fill="url(#g1)"
-                        name="Profiles"
-                        strokeWidth={2}
-                      />
-                    </AreaChart>
-                  </ResponsiveContainer>
-                </div>
+              <div className="h-72">
+                <ResponsiveContainer width="100%" height="100%">
+                  <LineChart
+                    data={hasSubmitted ? depthSeries : []}
+                    margin={{ top: 10, right: 20, bottom: 10, left: 0 }}
+                  >
+                    <CartesianGrid strokeDasharray="3 3" stroke="rgba(0,0,0,0.1)" />
+                    <XAxis
+                      dataKey="salinity"
+                      type="number"
+                      domain={[34, 36]}
+                      tickFormatter={(v) => v.toFixed(1)}
+                      tick={{ fill: 'hsl(var(--ocean-text-secondary))' }}
+                      axisLine={{ stroke: 'hsl(var(--ocean-border))' }}
+                      label={{
+                        value: "Salinity (PSU)",
+                        position: "insideBottom",
+                        offset: -2,
+                        style: { textAnchor: 'middle', fill: 'hsl(var(--ocean-text-primary))' }
+                      }}
+                    />
+                    <YAxis
+                      dataKey="depth"
+                      type="number"
+                      reversed
+                      domain={[0, 2000]}
+                      tick={{ fill: 'hsl(var(--ocean-text-secondary))' }}
+                      axisLine={{ stroke: 'hsl(var(--ocean-border))' }}
+                      label={{
+                        value: "Depth (m)",
+                        angle: -90,
+                        position: "insideLeft",
+                        style: { textAnchor: 'middle', fill: 'hsl(var(--ocean-text-primary))' }
+                      }}
+                    />
+                    <Tooltip
+                      contentStyle={{
+                        backgroundColor: 'hsl(var(--ocean-card))',
+                        border: '1px solid hsl(var(--ocean-border))',
+                        borderRadius: '12px',
+                        color: 'hsl(var(--ocean-text-primary))',
+                        boxShadow: '0 4px 12px rgba(0,0,0,0.15)'
+                      }}
+                      formatter={(v, n) => [
+                        v,
+                        n === "salinity" ? "Salinity" : "Depth",
+                      ]}
+                    />
+                    <Legend 
+                      wrapperStyle={{ color: 'hsl(var(--ocean-text-primary))' }}
+                    />
+                    <Line
+                      type="monotone"
+                      dataKey="salinity"
+                      dot={{ fill: 'hsl(var(--ocean-accent))', strokeWidth: 2, r: 4 }}
+                      strokeWidth={3}
+                      name="Salinity"
+                      stroke="hsl(var(--ocean-accent))"
+                    />
+                  </LineChart>
+                </ResponsiveContainer>
               </div>
+              <p className="text-xs text-ocean-text-muted mt-3 leading-relaxed">
+                Surface water ~34.2 PSU, deep ocean ~35.2 PSU (Indian Ocean,
+                March 2023).
+              </p>
             </div>
 
-            {/* Table */}
+            <div className="rounded-2xl bg-ocean-card border border-ocean-border shadow-lg p-5">
+              <div className="text-sm font-semibold mb-4 text-ocean-text-primary">
+                Profiles Found in March 2023
+              </div>
+              <div className="h-72">
+                <ResponsiveContainer width="100%" height="100%">
+                  <AreaChart
+                    data={hasSubmitted ? timeline : []}
+                    margin={{ top: 10, right: 20, bottom: 0, left: 0 }}
+                  >
+                    <defs>
+                      <linearGradient id="g1" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="5%" stopColor="hsl(var(--ocean-accent))" stopOpacity={0.8} />
+                        <stop offset="95%" stopColor="hsl(var(--ocean-cyan))" stopOpacity={0.1} />
+                      </linearGradient>
+                    </defs>
+                    <CartesianGrid strokeDasharray="3 3" stroke="rgba(0,0,0,0.1)" />
+                    <XAxis 
+                      dataKey="day" 
+                      tick={{ fill: 'hsl(var(--ocean-text-secondary))' }}
+                      axisLine={{ stroke: 'hsl(var(--ocean-border))' }}
+                    />
+                    <YAxis 
+                      tick={{ fill: 'hsl(var(--ocean-text-secondary))' }}
+                      axisLine={{ stroke: 'hsl(var(--ocean-border))' }}
+                    />
+                    <Tooltip
+                      contentStyle={{
+                        backgroundColor: 'hsl(var(--ocean-card))',
+                        border: '1px solid hsl(var(--ocean-border))',
+                        borderRadius: '12px',
+                        color: 'hsl(var(--ocean-text-primary))',
+                        boxShadow: '0 4px 12px rgba(0,0,0,0.15)'
+                      }}
+                    />
+                    <Area
+                      type="monotone"
+                      dataKey="profiles"
+                      stroke="hsl(var(--ocean-accent))"
+                      fill="url(#g1)"
+                      name="Profiles"
+                      strokeWidth={2}
+                    />
+                  </AreaChart>
+                </ResponsiveContainer>
+              </div>
+            </div>
+          </div>
+
+          {/* Table */}
+          {hasSubmitted && (
             <div className="rounded-2xl bg-ocean-card border border-ocean-border shadow-lg p-5">
               <div className="text-sm font-semibold mb-4 text-ocean-text-primary">
                 Sample Profiles (near Equator · March 2023)
@@ -376,8 +380,8 @@ SELECT * FROM filtered LIMIT 200;`}
                 </table>
               </div>
             </div>
-          </section>
-        )}
+          )}
+        </section>
       </main>
 
       <footer className="max-w-7xl mx-auto px-4 pb-8">
